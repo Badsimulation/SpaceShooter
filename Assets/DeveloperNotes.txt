@@ -1,0 +1,21 @@
+10.10.24
+Created Background
+Created Earth for background and PlanetSpin script
+Added boundaries
+Created Player sprite and PlayerController script
+Created EnemyWave and Enemy scripts, and enemy sprite
+Added explosion particle effect when enemies are destroyed
+Added bullet and trigger conditions to destroy enemies
+Added background music
+Created PlayerShooting script
+10.11.24
+Fixed enemywave to spawn offscreen
+Fixed enemywave to spawn centered between boundaries
+Fixed logic to make enemies move towards bottom of the screen
+Fixed enemies to change direction upon encountering a boundary
+Created animationclip for player Explosion
+Created notes script to keep track of todos
+Created developernotes script to keep track of progress
+Destroy Player on collision with Enemy
+Animation for destroying player
+Sound for player shooting

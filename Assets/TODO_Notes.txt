@@ -1,0 +1,10 @@
+Bottom boundary logic for destroying enemies
+Less enemies
+Enemies shoot at player
+Better formation
+Sound for destroying enemies
+Sound for destroying player
+Implement lives for player
+Build UI
+Build Start Screen
+Build Game Over Screen

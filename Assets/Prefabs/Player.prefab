@@ -1,0 +1,437 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &501092844416005387
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 757660388511023667}
+  - component: {fileID: -9183971860817591541}
+  - component: {fileID: -2893780963097002883}
+  - component: {fileID: -65286219161835378}
+  - component: {fileID: 6573253951906510733}
+  - component: {fileID: 128276095049902672}
+  - component: {fileID: -408129081912185980}
+  - component: {fileID: 5380944749729550158}
+  - component: {fileID: 2248850072541333750}
+  - component: {fileID: 8310274401779560402}
+  - component: {fileID: 6409292862705574060}
+  m_Layer: 0
+  m_Name: Player
+  m_TagString: Player
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &757660388511023667
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 501092844416005387}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -0, y: -3.5, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &-9183971860817591541
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 501092844416005387}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: dd4bd1cb8e880b049a1f4aff81ad3209, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  TODO_Notes: 'Bottom boundary logic for destroying enemies
+
+    Less enemies
+
+    Decide
+    between increasing number of enemies or speed/abilites or both
+
+    Better formation
+
+    Re-label
+    Restart button to say restart level once I have more levels
+
+    Build Boss fight
+    for Earth Location
+
+    Add sound effect for BossShip flying in to main menu
+
+    Transition
+    Loading Screen with Logo
+
+    Quit Button doesn''t work on pause menu if player
+    is inactive (dead) (or maybe it is after clicking the restart button that doesn''t
+    work in this instance?)
+
+    Trying to restart when player is inactive causes
+    a bug.
+
+    Replace lives text with ship or heart images to represent lives.
+
+    Fix
+    Game over jingle
+
+    Fix enemies to freeze at time of player destroyed.
+
+    Separate
+    UI manager script into separate script for Main Menu.'
+  developerNotes: '10.10.24
+
+    Created Background
+
+    Created Earth for background
+    and PlanetSpin script
+
+    Added boundaries
+
+    Created Player sprite and PlayerController
+    script
+
+    Created EnemyWave and Enemy scripts, and enemy sprite
+
+    Added
+    explosion particle effect when enemies are destroyed
+
+    Added bullet and trigger
+    conditions to destroy enemies
+
+    Added background music
+
+    Created PlayerShooting
+    script
+
+    10.11.24
+
+    Fixed enemywave to spawn offscreen
+
+    Fixed enemywave
+    to spawn centered between boundaries
+
+    Fixed logic to make enemies move towards
+    bottom of the screen
+
+    Fixed enemies to change direction upon encountering
+    a boundary
+
+    Added notes script to keep track of todos
+
+    Added developernotes
+    script to keep track of progress
+
+    Added Destroy Player on collision with
+    Enemy
+
+    Added AnimationClip for destroying player
+
+    Added Sound effect
+    for player shooting
+
+    Created base for UI
+
+    Added ScoreTracker and Lives
+    Tracker to UI
+
+    Added Pause menu
+
+    Implemented Pause button and restart
+    button
+
+    Created base for Start Screen and UI
+
+    Added BossShip to Start
+    menu for background effect
+
+    Implemented code to make BossShip Swoop in and
+    out of view on menu
+
+    Fixed bug in BossShip movement
+
+    10.12.24
+
+    Added
+    Title and Signature to StartMenu
+
+    Implemented Start Game button
+
+    Add
+    main menu background music track
+
+    Redesigned AudioPlayer code layout
+
+    Added
+    sound effect for player destroyed
+
+    Added fire animation to Boss Ship engine
+    on main menu
+
+    Separated code for Enemy collision into its own script
+
+    Added
+    sound effect for enemy destruction
+
+    Fixed enemy rotations when spawned in
+
+    Implemented
+    feature Enemies shoot at player
+
+    Added logic that EnemyBullets destroy player
+
+    Implement
+    code for player lives, they now display correctly
+
+    Fixed main menu boss ship
+    movement
+
+    10.14.24
+
+    Implemented Score logic, gain one point when killing
+    an enemy.
+
+    UI now shows current score correctly.
+
+    Updated fonts and coloring
+    for UI and pause screen.
+
+    Built Game Over scene and created UI.
+
+    Added
+    Restart and Quit buttons to Game Over screen.
+
+    Edited text and coloring for
+    Game over UI.
+
+    Added sad Jingle that should play when character gets Game
+    Over.
+
+    Implemented player respawn.'
+--- !u!114 &-2893780963097002883
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 501092844416005387}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ad3efaebacbb4c54991a3f83fea07103, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &-65286219161835378
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 501092844416005387}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8ff6675f5c4f8334cbff1f8ccdf147e5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &6573253951906510733
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 501092844416005387}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cdeb247e13cd5f7419295b4ac13fa86d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  moveSpeed: 5
+  moveInput: 0
+--- !u!114 &128276095049902672
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 501092844416005387}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cffb1de43e085ba4a903124b48140456, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  bulletPrefab: {fileID: 349340496109902405, guid: 985e4fd69a8cd6e4c981732665edd43a, type: 3}
+  firePoint: {fileID: 0}
+  bulletSpeed: 10
+  fireRate: 0.1
+  nextFireTime: 0
+  shotSound: {fileID: 8300000, guid: 26e19616f6ba9f6469e9d3d6c38b23fe, type: 3}
+--- !u!114 &-408129081912185980
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 501092844416005387}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 830c3835ee2372f47a0c2114fcf2b42e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  explosionPrefab: {fileID: 3814574832279256156, guid: 5e7e76ff6b215c9428dcce6b875dbfad, type: 3}
+  destroyDelay: 1.5
+  respawnDelay: 2
+  deathJingle: {fileID: 0}
+  playerDestroyedSound: {fileID: 8300000, guid: 9ab7ac9f6e729457d8a8dfa89151ee30, type: 3}
+  invulnerabilityDuration: 3
+  flickerInterval: 0.1
+--- !u!212 &5380944749729550158
+SpriteRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 501092844416005387}
+  m_Enabled: 1
+  m_CastShadows: 0
+  m_ReceiveShadows: 0
+  m_DynamicOccludee: 1
+  m_StaticShadowCaster: 0
+  m_MotionVectors: 1
+  m_LightProbeUsage: 1
+  m_ReflectionProbeUsage: 1
+  m_RayTracingMode: 0
+  m_RayTraceProcedural: 0
+  m_RayTracingAccelStructBuildFlagsOverride: 0
+  m_RayTracingAccelStructBuildFlags: 1
+  m_SmallMeshCulling: 1
+  m_RenderingLayerMask: 1
+  m_RendererPriority: 0
+  m_Materials:
+  - {fileID: 2100000, guid: a97c105638bdf8b4a8650670310a4cd3, type: 2}
+  m_StaticBatchInfo:
+    firstSubMesh: 0
+    subMeshCount: 0
+  m_StaticBatchRoot: {fileID: 0}
+  m_ProbeAnchor: {fileID: 0}
+  m_LightProbeVolumeOverride: {fileID: 0}
+  m_ScaleInLightmap: 1
+  m_ReceiveGI: 1
+  m_PreserveUVs: 0
+  m_IgnoreNormalsForChartDetection: 0
+  m_ImportantGI: 0
+  m_StitchLightmapSeams: 1
+  m_SelectedEditorRenderState: 0
+  m_MinimumChartSize: 4
+  m_AutoUVMaxDistance: 0.5
+  m_AutoUVMaxAngle: 89
+  m_LightmapParameters: {fileID: 0}
+  m_SortingLayerID: 0
+  m_SortingLayer: 0
+  m_SortingOrder: 20
+  m_Sprite: {fileID: 21300000, guid: a93c36da6f7182e4096ca2c951efbf42, type: 3}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_FlipX: 0
+  m_FlipY: 0
+  m_DrawMode: 0
+  m_Size: {x: 0.43, y: 0.4}
+  m_AdaptiveModeThreshold: 0.5
+  m_SpriteTileMode: 0
+  m_WasSpriteAssigned: 1
+  m_MaskInteraction: 0
+  m_SpriteSortPoint: 0
+--- !u!61 &2248850072541333750
+BoxCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 501092844416005387}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_ForceSendLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ForceReceiveLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ContactCaptureLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_CallbackLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_CompositeOperation: 0
+  m_CompositeOrder: 0
+  m_Offset: {x: 0, y: 0}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0.5, y: 0.5}
+    oldSize: {x: 0.43, y: 0.4}
+    newSize: {x: 0.43, y: 0.4}
+    adaptiveTilingThreshold: 0.5
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  m_Size: {x: 0.43, y: 0.4}
+  m_EdgeRadius: 0
+--- !u!50 &8310274401779560402
+Rigidbody2D:
+  serializedVersion: 5
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 501092844416005387}
+  m_BodyType: 0
+  m_Simulated: 1
+  m_UseFullKinematicContacts: 0
+  m_UseAutoMass: 0
+  m_Mass: 1
+  m_LinearDamping: 0
+  m_AngularDamping: 0.05
+  m_GravityScale: 0
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_Interpolate: 0
+  m_SleepingMode: 1
+  m_CollisionDetection: 0
+  m_Constraints: 6
+--- !u!114 &6409292862705574060
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 501092844416005387}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: dd4bd1cb8e880b049a1f4aff81ad3209, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  TODO_Notes: 
+  developerNotes: 
