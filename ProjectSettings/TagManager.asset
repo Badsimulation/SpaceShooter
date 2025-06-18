@@ -9,6 +9,8 @@ TagManager:
   - Bullet
   - Boundary
   - EnemyBullet
+  - KillZone
+  - ExtraLife
   layers:
   - Default
   - TransparentFX

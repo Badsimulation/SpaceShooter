@@ -8,7 +8,9 @@ public class GameOverManager : MonoBehaviour
     public void RestartGame()
     {
         //load EarthLevel1
-        SceneManager.LoadScene("EarthLevel1");
+        GameState.isFrozen = false;
+        Time.timeScale = 1f;
+        SceneManager.LoadScene("EarthLevel1", LoadSceneMode.Single);
     }
 
     //Method for the Quit button

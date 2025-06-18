@@ -2,17 +2,18 @@ using UnityEngine;
 
 public class PlayerShooting : MonoBehaviour
 {
-
+    //logic
     public GameObject bulletPrefab;             //Assign bullet prefab here
     public Transform firePoint;                 //point from where the bullet is shot
     public float bulletSpeed = 10f;             //speed that the bullet moves
     public float fireRate = 0.5f;               //time between shots
     public float nextFireTime = 0f;
-    public AudioClip shotSound;                 //Assign sound for player's weapon here
-
-    private AudioPlayer audioPlayer;     //reference the the AudioSource for sound effects
-
     private float destroyDelay = 1.5f;
+    
+    //audio
+    public AudioClip shotSound;                 //Assign sound for player's weapon here
+    private AudioPlayer audioPlayer;            //reference the the AudioSource for sound effects
+
 
     private void Start()
     {

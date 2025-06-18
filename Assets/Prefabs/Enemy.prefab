@@ -10,7 +10,6 @@ GameObject:
   m_Component:
   - component: {fileID: 7229804578797113021}
   - component: {fileID: 5929202744284069590}
-  - component: {fileID: -8387835695163691101}
   - component: {fileID: -6369959001936301742}
   - component: {fileID: -5834680173663300435}
   - component: {fileID: -1656439513873893789}
@@ -32,7 +31,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 1, w: 0}
   m_LocalPosition: {x: -1.81, y: 3.5, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 2, y: 2, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
@@ -92,20 +91,6 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!114 &-8387835695163691101
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7261104107732258964}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: bf1d25b4ce677f84eb7c8cdff15824aa, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  moveSpeed: 1
-  approachSpeed: 1
 --- !u!114 &-6369959001936301742
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -121,6 +106,8 @@ MonoBehaviour:
   destroyDelay: 1
   enemyDestroyedSound: {fileID: 8300000, guid: 2876e7fa4419a4a7096b8bb38641daa3, type: 3}
   explosionEffect: {fileID: 100002, guid: cafecd3fc3b761c45bb1553f35cf5c96, type: 3}
+  wave: {fileID: 0}
+  extraLifePrefab: {fileID: 6433075592445979718, guid: 6e8179840ec633c458e007c8c62cffb5, type: 3}
 --- !u!114 &-5834680173663300435
 MonoBehaviour:
   m_ObjectHideFlags: 0

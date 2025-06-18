@@ -1,53 +1,98 @@
+using System.Collections;
 using UnityEngine;
 
 public class EnemyWave : MonoBehaviour
 {
-    public GameObject enemyPrefab;                  //references the enemy prefab
-    public int rows = 5;                            //number of rows
-    public int cols = 10;                           //number of columns
-    public float spacing = 1.5f;                    //spacing between enemies
-    public float moveSpeed = 1f;                    //speed of horizontal movement
-    public float approachingSpeed = 0.5f;           //speed of downward movement
-    public float startDistance = 2f;
+    private GameObject enemyPrefab;                  //references the enemy prefab
+    private int rows = 5;                            //number of rows
+    private int cols = 10;                           //number of columns
+    private float spacing = 1.5f;                    //spacing between enemies
+    private float moveSpeed = 1f;                    //speed of horizontal movement
+    private float approachingSpeed = 0.5f;           //speed of downward movement
+    private float startDistance = 2f;
+
+    //delay variables for enemies
+    private float delayBetweenEnemy = 0.05f;
+    private float delayBetweenRows = 0.5f;
+
+    //keeps track of the number of enemies
+    private int enemyCount = 0;
 
     private Vector2 screenBounds;                   //determine when enemies are off-screen
-    
-    
+
+
     // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Start()
+    private void Initialize()
     {
-        //prevent enemies from colliding with each other
         Physics2D.IgnoreLayerCollision(LayerMask.NameToLayer("Enemy"), LayerMask.NameToLayer("Enemy"));
-
-        //Get screen boundaries to determine off-screen starting positions
-        screenBounds = Camera.main.ScreenToWorldPoint(new Vector3(Screen.width, Screen.height, Camera.main.transform.position.z));
-
-        //Spawn the enemies above the screen
-        SpawnEnemiesOffScreen();
+        screenBounds = Camera.main.ScreenToWorldPoint(
+            new Vector3(Screen.width, Screen.height, Camera.main.transform.position.z));
     }
 
-
-    //spawns enemies in a grid formation, starting off-screen
-    void SpawnEnemiesOffScreen()
+    //level manager can call this method
+    public void BeginWave()
     {
-        //calculate the total width of the enemy grid
-        float gridWidth = (cols -1) * spacing;
+        StartCoroutine(SpawnEnemyRows());
+    }
 
-        //calculate the starting y position above the screen
+    IEnumerator SpawnEnemyRows()
+    {
+        float gridWidth = (cols - 1) * spacing;
         float startY = screenBounds.y + startDistance;
-
-        //calculate the x offset so that the grid is centerd on the screen
         float startX = -(gridWidth / 2);
 
+        float currentY = startY;
 
         for (int row = 0; row < rows; row++)
         {
+            //create a container gameobject for the row
+            GameObject rowContainer = new GameObject("EnemyRow_" + row);
+            rowContainer.transform.parent = transform;
+
+            //add movement script to the row
+            EnemyRowMover mover = rowContainer.AddComponent<EnemyRowMover>();
+            mover.moveSpeed = moveSpeed;
+            mover.approachSpeed = approachingSpeed;
+            mover.movingRight = Random.value > 0.5f; //random start direction
+
             for (int col = 0; col < cols; col++)
             {
-                //position each enemy in a grid pattern, starting off-screen
-                Vector3 position = new Vector3(startX + col * spacing, startY + row * spacing, 0);
-                Instantiate(enemyPrefab, position, enemyPrefab.transform.rotation, transform);
+                Vector3 position = new Vector3(startX + col * spacing, currentY, 0);
+                GameObject enemy = Instantiate(enemyPrefab, position, Quaternion.identity, rowContainer.transform);
+                enemy.GetComponent<EnemyCollision>()?.SetWave(this);
+
+                yield return new WaitForSeconds(delayBetweenEnemy);
             }
+
+            //randomize spacing for next row
+            float rowSpacing = spacing + Random.Range(-0.3f, 0.8f);
+            currentY += rowSpacing;
+
+            yield return new WaitForSeconds(delayBetweenRows);
+        }
+    }
+
+    public void ConfigureWave(GameObject enemyPrefab, int rows, int cols, float spacing, float moveSpeed, 
+                              float approachingSpeed, float startDistance, int totalEnemies)
+    {
+        this.enemyPrefab = enemyPrefab;
+        this.rows = rows;
+        this.cols = cols;
+        this.spacing = spacing;
+        this.moveSpeed = moveSpeed;
+        this.approachingSpeed = approachingSpeed;
+        this.startDistance = startDistance;
+        this.enemyCount = totalEnemies;
+        Initialize();
+    }
+
+    public void UnregisterEnemy()
+    {
+        enemyCount--;
+        if (enemyCount <= 0)
+        {
+            Debug.Log("Wave cleared");
+            LevelManager.Instance.OnWaveCleared();
         }
     }
 

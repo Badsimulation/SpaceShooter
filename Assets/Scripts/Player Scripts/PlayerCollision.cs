@@ -4,24 +4,34 @@ using UnityEngine.SceneManagement;
 
 public class PlayerCollision : MonoBehaviour
 {
-    public GameObject explosionPrefab;
-    public float destroyDelay = 1f;
-    public float respawnDelay = 2f;
+
+    //audio
     public AudioClip deathJingle;
     public AudioClip playerDestroyedSound;
     private AudioPlayer audioPlayer;
+
+    //effects
+    public GameObject explosionPrefab;
+    public float flickerInterval = 0.1f; //interval for flicker effect
+    
+    //references for logic
+    private PlayerController playerController;
+    private PlayerShooting playerShooting;
     private Renderer playerRenderer;
     private Collider2D playerCollider;
-    private bool isInvulnerable = false;
-    public float invulnerabilityDuration = 3f;      //duration of invulnerability
-    public float flickerInterval = 0.1f;            //interval for flicker effect
 
+    //logic variables
+    public float destroyDelay = 1f;
+    public float respawnDelay = 2f;
+    public float invulnerabilityDuration = 3f;      //duration of invulnerability
     private Vector3 respawnPosition = new Vector3(0, -3.5f, 0);
 
     private void Start()
     {
         playerRenderer = GetComponent<Renderer>();
         playerCollider = GetComponent<Collider2D>();
+        playerController = GetComponent<PlayerController>();
+        playerShooting = GetComponent<PlayerShooting>();
     }
 
 
@@ -46,6 +56,9 @@ public class PlayerCollision : MonoBehaviour
                 Destroy(collision.gameObject);
             }
 
+            //freeze enemies during respawn phase
+            FreezeEnemies(true);
+
             //respawn and game-over logic here
             if (PlayerLives.instance.GetCurrentLives() > 0)
             {
@@ -67,7 +80,6 @@ public class PlayerCollision : MonoBehaviour
         gameObject.SetActive (true);
 
         StartCoroutine(InvulnerabilityEffect() );
-        FreezeEnemies(true);                        //Freeze enemies while player is invulnerable
     }
 
     void TriggerExplosion()
@@ -95,8 +107,13 @@ public class PlayerCollision : MonoBehaviour
 
     IEnumerator InvulnerabilityEffect()
     {
-        isInvulnerable = true;
         playerCollider.enabled = false; //disable player collider to avoid collisions during respawn
+
+        //disable input
+        if (playerController != null)
+            playerController.enabled = false;
+        if (playerShooting != null)
+            playerShooting.enabled = false;
 
         float elapsedTime = 0f;
 
@@ -111,18 +128,22 @@ public class PlayerCollision : MonoBehaviour
 
         playerRenderer.enabled = true;      //ensure player is visible
         playerCollider.enabled = true;      //re-enable player collider
-        isInvulnerable = false;
-        FreezeEnemies(false);               //Unfreeze enemies after invulnerability
+
+        //re-enable input
+        if (playerController != null)
+            playerController.enabled = true;
+        if (playerShooting != null)
+            playerShooting.enabled = true;
+
+        //unfreeze enemies after invulnerability ends
+        FreezeEnemies(false);
     }
 
     void FreezeEnemies(bool freeze)
     {
-        EnemyController[] enemies = FindObjectsByType<EnemyController>(FindObjectsSortMode.None);
-        foreach (EnemyController enemy in enemies)
-        {
-            enemy.SetFrozen(freeze);
-        }
+        GameState.isFrozen = freeze;
     }
+
 
 
     

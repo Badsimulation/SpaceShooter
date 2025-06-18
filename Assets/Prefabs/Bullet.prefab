@@ -10,6 +10,8 @@ GameObject:
   m_Component:
   - component: {fileID: 4102197817558452394}
   - component: {fileID: 989657753756849083}
+  - component: {fileID: -1847122993960129280}
+  - component: {fileID: 1302091111664941597}
   - component: {fileID: 1882576896218299200}
   - component: {fileID: 6739975709705157824}
   m_Layer: 0
@@ -89,6 +91,30 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!114 &-1847122993960129280
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 349340496109902405}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6d620a710a0e78740bf78f1c55641c78, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &1302091111664941597
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 349340496109902405}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 838a0d2b9d198fd479e4c63ced396d4d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!58 &1882576896218299200
 CircleCollider2D:
   m_ObjectHideFlags: 0

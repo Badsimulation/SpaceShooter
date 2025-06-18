@@ -12,7 +12,6 @@ public class PlayerScore : MonoBehaviour
         if (instance == null)
         {
             instance = this;
-            DontDestroyOnLoad(gameObject);
         }
         else
         {
